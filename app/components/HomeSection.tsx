@@ -4,7 +4,7 @@ import titleSvg from "@/app/img/Title.svg";
 
 export default function HomeSection() {
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-between items-center bg-stone-900 text-stone-50 overflow-hidden">
+    <section className="relative w-full min-h-screen flex flex-col justify-between items-center bg-stone-900 text-stone-50 overflow-hidden pb-12 md:pb-16">
       {/* 1. IMMAGINE DI SFONDO */}
       <Image
         src={homeImage}
@@ -14,14 +14,15 @@ export default function HomeSection() {
         priority
       />
 
-      {/* Overlay scuro opzionale per migliorare la leggibilità dei testi bianchi sulla foto */}
+      {/* Overlay scuro per migliorare la leggibilità */}
       <div className="absolute inset-0 bg-black/20 pointer-events-none" />
 
-      {/* 2. CONTENUTO CENTRALE (Titolo + Data + RSVP) */}
-      {/* Usiamo z-10 per stare sopra lo sfondo e flex-col per impilare tutto verticalmente */}
-      <div className="relative z-10 flex-1 w-full max-w-4xl mx-auto px-6 flex flex-col justify-center items-center text-center gap-12 md:gap-16">
-        {/* IL TITOLO (Immagine vettoriale responsive) */}
-        <div className="w-full max-w-70 sm:max-w-112.5 md:max-w-150 lg:max-w-175 h-auto transition-all">
+      {/* 2. CONTENUTO CENTRALE */}
+      {/* py-20 garantisce che ci sia spazio dall'alto dello schermo prima del titolo */}
+      <div className="relative z-10 flex-1 w-full max-w-11/12 mx-auto px-6 flex flex-col items-center text-center pt-56 pb-4">
+        {/* IL TITOLO (Ingrandito rispetto a prima) */}
+        {/* Ho aumentato drasticamente i max-w per renderlo molto più grande su tutti gli schermi */}
+        <div className="w-full max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-4xl h-auto transition-all duration-300">
           <Image
             src={titleSvg}
             alt="Nome degli Sposi"
@@ -30,8 +31,8 @@ export default function HomeSection() {
           />
         </div>
 
-        {/* LA DATA (Fluida, si adatta e va a capo con grazia su mobile) */}
-        <div className="font-['Cochin'] serif tracking-wide leading-relaxed max-w-2xl px-2">
+        {/* LA DATA (Mantiene il suo gap naturale dal titolo grazie a mt-12) */}
+        <div className="mt-12 font-['Cochin'] serif tracking-wide leading-relaxed max-w-2xl px-2">
           <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-1 text-xl sm:text-2xl md:text-3xl font-medium">
             <span>sabato</span>
             <span className="text-2xl md:text-4xl font-light text-stone-300 select-none">
@@ -47,14 +48,16 @@ export default function HomeSection() {
           </div>
         </div>
 
-        {/* BADGE RSVP (Un cerchio perfetto, senza posizionamenti assoluti sul testo) */}
-        <div className="mt-4 md:mt-8 flex justify-center items-center">
+        {/* BADGE RSVP (Scollegato dal flusso!) */}
+        {/* mt-auto fa sì che questo div consumi tutto lo spazio verticale residuo, 
+            spingendo il badge sul fondo della schermata, ben distante dalla data */}
+        <div className="mt-auto pt-16 flex justify-center items-center">
           {/* Cerchio Esterno */}
-          <div className="w-36 h-36 md:w-44 md:h-44 rounded-full border border-stone-50/60 flex justify-center items-center p-2 animate-fade-in">
-            {/* Cerchio Interno che contiene il testo centrato nativamente */}
-            <div className="w-full h-full rounded-full border border-stone-50 flex flex-col justify-center items-center p-4">
-              <span className="font-['Cochin'] text-xs md:text-sm tracking-widest uppercase opacity-80 mb-1">
-                RSVP entro il
+          <div className="w-32 h-32 md:w-36 md:h-36 rounded-full border border-stone-50 flex justify-center items-center p-2 animate-fade-in hover:scale-105 transition-transform duration-300">
+            {/* Cerchio Interno */}
+            <div className="w-full h-full rounded-full border border-stone-50/60 flex flex-col justify-center items-center p-2">
+              <span className="font-['Cochin'] text-xl md:text-2xl tracking-wide font-bold">
+                RSVP
               </span>
               <span className="font-['Cochin'] font-bold text-base md:text-xl tracking-tight">
                 31/08/2026

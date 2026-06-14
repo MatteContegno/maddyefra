@@ -1,5 +1,6 @@
 import Image from "next/image";
-import listaNozeImage from "../img/rsvp.svg";
+import Link from "next/link"; // <-- Importato il componente nativo di Next.js
+import listaNozzeImage from "../img/rsvp.jpg";
 import indirizzoIcon from "../img/Indirizzo.svg";
 import phoneIcon from "../img/Phone.svg";
 import mailIcon from "../img/mail.svg";
@@ -13,19 +14,23 @@ export default function ListaNozzeSection() {
       id="lista-nozze"
       className="relative w-full min-h-screen flex items-center justify-center bg-stone-900 py-20 px-6 md:px-12 overflow-hidden"
     >
-      {/* 1. IMMAGINE DI SFONDO */}
-      <Image
-        src={listaNozeImage}
-        alt="Lista Nozze Background"
-        fill
-        className="object-cover object-center select-none opacity-85"
-        priority
-      />
-      {/* Overlay per garantire che il testo bianco sia leggibile su qualsiasi foto */}
-      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+      {/* ========================================== */}
+      {/* STRUTTURA DEGLI SFONDI */}
+      <div className="absolute inset-0 z-10 opacity-85 pointer-events-none">
+        <Image
+          src={listaNozzeImage}
+          alt="Lista Nozze Background"
+          fill
+          className="object-cover object-center select-none"
+          priority
+        />
+      </div>
 
-      {/* 2. CONTENITORE CENTRALE RESPONSIVE */}
-      <div className="relative z-10 w-full max-w-3xl mx-auto flex flex-col items-center gap-10 md:gap-12 text-stone-50 drop-shadow-md">
+      <div className="absolute inset-0 z-20 bg-black/20 pointer-events-none" />
+      {/* ========================================== */}
+
+      {/* 2. CONTENITORE CENTRALE */}
+      <div className="relative z-30 w-full max-w-3xl mx-auto flex flex-col items-center gap-10 md:gap-12 text-stone-50 drop-shadow-md">
         {/* TITOLI */}
         <div className="text-center space-y-2">
           <h2
@@ -34,16 +39,16 @@ export default function ListaNozzeSection() {
           >
             Lista nozze
           </h2>
-          <h3 className="font-['Cochin'] text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide text-stone-200">
+          <h3 className="font-['Cochin'] text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide text-stone-200 text-center">
             Sastesitour
           </h3>
         </div>
 
-        {/* CONTENITORE INFO (Organizzato in blocchi logici puliti) */}
-        <div className="w-full flex flex-col gap-6 md:gap-8 font-['DM_Sans'] text-lg sm:text-xl md:text-2xl font-light">
+        {/* CONTENITORE INFO */}
+        <div className="w-full flex flex-col items-center gap-6 md:gap-8 font-['DM_Sans'] text-lg sm:text-xl md:text-2xl font-light">
           {/* BLOCCO 1: INDIRIZZO */}
-          <div className="flex items-start justify-center gap-4 text-center max-w-xl mx-auto">
-            <div className="shrink-0 w-5 h-5 mt-1.5 relative">
+          <div className="flex flex-row items-center justify-center gap-3 max-w-xl mx-auto text-center">
+            <div className="w-5 h-5 relative shrink-0">
               <Image
                 src={indirizzoIcon}
                 alt=""
@@ -59,62 +64,61 @@ export default function ListaNozzeSection() {
             </p>
           </div>
 
-          <hr className="w-24 mx-auto border-stone-50/20" />
+          <hr className="w-24 border-stone-50/20" />
 
-          {/* BLOCCO 2: CONTATTI DIRETTI */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
-            {/* Telefono */}
-            <a
-              href="tel:0105303608"
-              className="flex items-center gap-3 hover:text-stone-300 transition-colors"
-            >
-              <div className="w-5 h-5 relative">
-                <Image src={phoneIcon} alt="" fill className="object-contain" />
-              </div>
-              <p>
-                <span className="font-bold">Telefono: </span>
-                <span className="text-stone-200">0105303608</span>
-              </p>
-            </a>
+          {/* BLOCCO 2: TELEFONO (Utilizza Link nativo) */}
+          <Link
+            href="tel:0105303608"
+            className="flex flex-row items-center justify-center gap-3 hover:text-stone-300 transition-colors max-w-xl"
+          >
+            <div className="w-5 h-5 relative shrink-0">
+              <Image src={phoneIcon} alt="" fill className="object-contain" />
+            </div>
+            <p>
+              <span className="font-bold">Telefono: </span>
+              <span className="text-stone-200">0105303608</span>
+            </p>
+          </Link>
 
-            {/* Email */}
-            <a
-              href="mailto:agenzia@sastesitour.it"
-              className="flex items-center gap-3 hover:text-stone-300 transition-colors"
-            >
-              <div className="w-6 h-5 relative">
-                <Image src={mailIcon} alt="" fill className="object-contain" />
-              </div>
-              <p>
-                <span className="font-bold">Email: </span>
-                <span className="text-stone-200 underline decoration-stone-400">
-                  agenzia@sastesitour.it
-                </span>
-              </p>
-            </a>
-          </div>
+          <hr className="w-24 border-stone-50/20" />
 
-          <hr className="w-24 mx-auto border-stone-50/20" />
+          {/* BLOCCO 3: EMAIL (Utilizza Link nativo) */}
+          <Link
+            href="mailto:agenzia@sastesitour.it"
+            className="flex flex-row items-center justify-center gap-3 hover:text-stone-300 transition-colors max-w-xl"
+          >
+            <div className="w-6 h-5 relative shrink-0">
+              <Image src={mailIcon} alt="" fill className="object-contain" />
+            </div>
+            <p>
+              <span className="font-bold">Email: </span>
+              <span className="text-stone-200 underline decoration-stone-400">
+                agenzia@sastesitour.it
+              </span>
+            </p>
+          </Link>
 
-          {/* BLOCCO 3: ACCESSO SITO AGENZIA (Card evidenziata) */}
-          <div className="w-full max-w-xl mx-auto bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 flex flex-col gap-4 border border-white/10">
-            {/* Link al sito */}
-            <a
+          <hr className="w-24 border-stone-50/20" />
+
+          {/* BLOCCO 4: ACCESSO SITO AGENZIA */}
+          <div className="w-full max-w-xl flex flex-col items-center gap-6">
+            {/* Link Esterno al sito (Utilizza Link nativo) */}
+            <Link
               href="https://ferrerocontegno.amoore.it"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 text-center text-amber-200 hover:underline break-all font-medium"
+              className="flex flex-row items-center justify-center gap-3 hover:underline break-all font-medium"
             >
-              <div className="w-5 h-5 shrink-0 relative">
+              <div className="w-5 h-5 relative shrink-0">
                 <Image src={linkIcon} alt="" fill className="object-contain" />
               </div>
               <span>https://ferrerocontegno.amoore.it</span>
-            </a>
+            </Link>
 
-            {/* Credenziali affiancate */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-base md:text-lg border-t border-white/5">
+            {/* Credenziali */}
+            <div className="w-full flex flex-col items-center gap-4 text-base md:text-lg">
               {/* Username */}
-              <div className="flex items-center gap-3 justify-center sm:justify-start">
+              <div className="flex flex-row items-center justify-center gap-3">
                 <div className="w-5 h-5 relative shrink-0">
                   <Image
                     src={usernameIcon}
@@ -132,7 +136,7 @@ export default function ListaNozzeSection() {
               </div>
 
               {/* Password */}
-              <div className="flex items-center gap-3 justify-center sm:justify-start">
+              <div className="flex flex-row items-center justify-center gap-3">
                 <div className="w-5 h-5 relative shrink-0">
                   <Image src={pwdIcon} alt="" fill className="object-contain" />
                 </div>

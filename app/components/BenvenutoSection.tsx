@@ -15,7 +15,7 @@ export default function BenvenutoSection() {
       className="w-full min-h-screen px-6 py-16 md:p-16 flex flex-col justify-center items-center bg-stone-50"
     >
       {/* Il layout diventa colonna su mobile (flex-col) e riga su desktop (md:flex-row) */}
-      <div className="w-full max-w-7xl flex flex-col md:flex-row justify-between items-stretch gap-12 lg:gap-20">
+      <div className="w-full max-w-11/12 flex flex-col md:flex-row justify-between items-stretch gap-12 lg:gap-20">
         {/* CONTENITORE IMMAGINE: proporzionato e fluido */}
         <div className="w-full md:flex-1 min-h-75 md:min-h-125 relative rounded-2xl overflow-hidden">
           <Image
