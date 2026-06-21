@@ -6,14 +6,240 @@ import Bgform from "@/app/img/Bgform.png";
 import logo from "../img/logo.svg";
 import arrowIcon from "@/app/img/arrow.svg";
 
-// Sostituisci questo URL con l'URL della Web App generata da Google Apps Script
-const GOOGLE_SHEET_WEBAPP_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL";
+const GOOGLE_SHEET_WEBAPP_URL =
+  "https://script.google.com/macros/s/AKfycby8SWjhUccr2ZdJWj2vdDP71PqCAIIzQ1tK2BkGzpTvCjTR33z6mp4UIRNH8UYuKuCQmQ/exec";
 
+// 1. INTERFACCE PER I TIPI
+interface FormDataProps {
+  nomeAndCognome: string;
+  dietaryPreference: string;
+  allergies: string;
+  notes: string;
+  sleepingPreference: string;
+}
+
+interface StepContentProps {
+  currentStep: number;
+  formData: FormDataProps;
+  setFormData: React.Dispatch<React.SetStateAction<FormDataProps>>;
+}
+
+// 2. COMPONENTE FORM CONTAINER ESTRATTO ALL'ESTERNO (Risolve il problema del reset del DOM)
+const FormContainer = ({ children }: { children: React.ReactNode }) => (
+  <div className="relative w-full h-full p-6 md:p-10 rounded-[30px] md:rounded-[40px] flex flex-col justify-between items-center text-stone-50 overflow-hidden border border-white/10 shadow-2xl transition-all duration-300">
+    <Image
+      src={Bgform}
+      alt="Form Background"
+      fill
+      className="object-cover object-center -z-20 select-none"
+      priority
+    />
+
+    <div className="flex flex-col items-center gap-4 md:gap-6 w-full flex-1 relative z-10 overflow-y-auto no-scrollbar">
+      <div className="w-14 h-14 md:w-16 md:h-16 relative opacity-90 flex justify-center items-center shrink-0">
+        <Image
+          src={logo}
+          alt="Logo"
+          width={64}
+          height={64}
+          className="w-full h-auto object-contain"
+        />
+      </div>
+      <div className="w-full flex-1 flex flex-col justify-center items-center min-h-85 md:min-h-90">
+        {children}
+      </div>
+    </div>
+  </div>
+);
+
+// 3. COMPONENTE STEP CONTENT ESTRATTO ALL'ESTERNO
+const StepContent = ({
+  currentStep,
+  formData,
+  setFormData,
+}: StepContentProps) => {
+  switch (currentStep) {
+    case 1:
+      return (
+        <div className="w-full flex flex-col items-center justify-center gap-4 font-['DM_Sans'] py-2">
+          <div className="text-center space-y-1">
+            <label className="block text-xl md:text-2xl font-medium">
+              Nome e cognome
+            </label>
+            <span className="block text-stone-300 text-xs font-light">
+              *Non accettiamo soprannomi :)
+            </span>
+          </div>
+          <input
+            type="text"
+            placeholder="Mario Rossi"
+            value={formData.nomeAndCognome}
+            onChange={(e) =>
+              setFormData({ ...formData, nomeAndCognome: e.target.value })
+            }
+            className="w-full max-w-md h-12 px-5 bg-white/10 rounded-full border border-stone-300/50 text-stone-50 text-base md:text-lg font-light backdrop-blur-xl focus:outline-none focus:ring-2 focus:ring-stone-50 transition-all text-center"
+          />
+        </div>
+      );
+    case 2:
+      return (
+        <div className="w-full flex flex-col items-center justify-center gap-5 font-['DM_Sans'] py-2">
+          <div className="text-center space-y-1">
+            <h4 className="text-xl md:text-2xl font-medium">
+              Abitudine alimentare
+            </h4>
+            <span className="block text-stone-300 text-xs font-light">
+              *Seleziona una delle opzioni
+            </span>
+          </div>
+          <div className="w-full max-w-3xl flex flex-row flex-wrap justify-center items-center gap-3">
+            {["Onnivoro", "Vegetariano", "Vegano", "Nessuna / Altro"].map(
+              (option) => {
+                const isSelected = formData.dietaryPreference === option;
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() =>
+                      setFormData({ ...formData, dietaryPreference: option })
+                    }
+                    className={`h-11 px-5 rounded-full border flex items-center justify-center gap-2.5 transition-all whitespace-nowrap flex-1 sm:flex-initial min-w-[140px] ${
+                      isSelected
+                        ? "bg-stone-50 border-stone-50 text-stone-900 font-medium"
+                        : "bg-white/5 border-stone-50/30 text-stone-50 hover:bg-white/10"
+                    }`}
+                  >
+                    <div
+                      className={`w-2.5 h-2.5 rounded-full border shrink-0 ${isSelected ? "bg-stone-900 border-stone-900" : "border-stone-50/50"}`}
+                    />
+                    <span className="text-sm md:text-base font-light">
+                      {option}
+                    </span>
+                  </button>
+                );
+              },
+            )}
+          </div>
+        </div>
+      );
+    case 3: {
+      const allergyOptions = [
+        "Nessuna",
+        "Glutine",
+        "Crostacei",
+        "Lattosio",
+        "Frutta a guscio",
+      ];
+      return (
+        <div className="w-full flex flex-col items-center justify-center gap-5 font-['DM_Sans'] py-2">
+          <div className="text-center space-y-1">
+            <h4 className="text-xl md:text-2xl font-medium">
+              Allergie o Intolleranze
+            </h4>
+            <span className="block text-stone-300 text-xs font-light">
+              *Seleziona la tua intolleranza principale
+            </span>
+          </div>
+          <div className="w-full max-w-3xl flex flex-row flex-wrap justify-center items-center gap-3">
+            {allergyOptions.map((option) => {
+              const isSelected = formData.allergies === option;
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() =>
+                    setFormData({ ...formData, allergies: option })
+                  }
+                  className={`h-11 px-5 rounded-full border flex items-center justify-center gap-2.5 transition-all whitespace-nowrap flex-1 sm:flex-initial min-w-[140px] ${
+                    isSelected
+                      ? "bg-stone-50 border-stone-50 text-stone-900 font-medium"
+                      : "bg-white/5 border-stone-50/30 text-stone-50 hover:bg-white/10"
+                  }`}
+                >
+                  <div
+                    className={`w-2.5 h-2.5 rounded-full border shrink-0 ${isSelected ? "bg-stone-900 border-stone-900" : "border-stone-50/50"}`}
+                  />
+                  <span className="text-sm md:text-base font-light">
+                    {option}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+    case 4:
+      return (
+        <div className="w-full flex flex-col items-center justify-center gap-4 font-['DM_Sans'] py-2 ">
+          <div className="text-center space-y-1">
+            <h4 className="text-xl md:text-2xl font-medium">
+              Note particolari
+            </h4>
+            <span className="block text-stone-300 text-xs font-light">
+              *Solo se necessario, non sentirti obbligato!
+            </span>
+          </div>
+          <textarea
+            placeholder="Aggiungi note particolari..."
+            value={formData.notes}
+            onChange={(e) =>
+              setFormData({ ...formData, notes: e.target.value })
+            }
+            className="w-full max-w-md h-28 p-4 bg-white/5 border border-stone-50/30 rounded-2xl text-stone-50 text-sm md:text-base font-light backdrop-blur-xl focus:outline-none focus:ring-2 focus:ring-stone-50 resize-none transition-all"
+          />
+        </div>
+      );
+    case 5:
+      return (
+        <div className="w-full flex flex-col items-center justify-center gap-4 font-['DM_Sans'] py-2">
+          <div className="text-center space-y-1 max-w-md">
+            <h4 className="text-xl md:text-2xl font-medium">
+              Ti vuoi fermare a dormire?
+            </h4>
+            <p className="text-stone-300 text-xs font-light leading-relaxed">
+              *Posti letto in casa da campo, spazio per tende/camper.
+            </p>
+          </div>
+          <div className="w-full max-w-md flex flex-row justify-center gap-3">
+            {["Si mi fermo", "Torno a casa"].map((option) => {
+              const isSelected = formData.sleepingPreference === option;
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() =>
+                    setFormData({ ...formData, sleepingPreference: option })
+                  }
+                  className={`flex-1 h-11 px-4 rounded-full border flex items-center justify-center gap-3 transition-all whitespace-nowrap ${
+                    isSelected
+                      ? "bg-stone-50 border-stone-50 text-stone-900 font-medium"
+                      : "bg-white/5 border-stone-50/30 text-stone-50 hover:bg-white/10"
+                  }`}
+                >
+                  <div
+                    className={`w-2.5 h-2.5 rounded-full border shrink-0 ${isSelected ? "bg-stone-900 border-stone-900" : "border-stone-50/50"}`}
+                  />
+                  <span className="text-sm md:text-base font-light">
+                    {option}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      );
+    default:
+      return null;
+  }
+};
+
+// 4. COMPONENTE PRINCIPALE
 export default function RSVPForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormDataProps>({
     nomeAndCognome: "",
     dietaryPreference: "",
     allergies: "",
@@ -22,18 +248,22 @@ export default function RSVPForm() {
   });
 
   const handleSubmit = async () => {
+    if (!formData.nomeAndCognome.trim()) {
+      alert("Per favore, inserisci Nome e Cognome.");
+      setCurrentStep(1);
+      return;
+    }
+
     setIsSending(true);
     try {
-      // Invio dei dati tramite POST a Google Apps Script
-      const response = await fetch(GOOGLE_SHEET_WEBAPP_URL, {
+      await fetch(GOOGLE_SHEET_WEBAPP_URL, {
         method: "POST",
-        mode: "no-cors", // Cruciale per evitare problemi di CORS con Google
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-
       setIsSubmitted(true);
     } catch (error) {
       console.error("Errore durante l'invio a Google Sheets:", error);
@@ -71,34 +301,6 @@ export default function RSVPForm() {
     }
   };
 
-  // Wrapper adattivo: rimosso min-h-[591px] e impostato h-full flessibile
-  const FormContainer = ({ children }: { children: React.ReactNode }) => (
-    <div className="relative w-full h-full p-6 md:p-10 rounded-[30px] md:rounded-[40px] flex flex-col justify-between items-center text-stone-50 overflow-hidden border border-white/10 shadow-2xl transition-all duration-300">
-      {/* Sfondo del form */}
-      <Image
-        src={Bgform}
-        alt="Form Background"
-        fill
-        className="object-cover object-center -z-20 select-none"
-        priority
-      />
-
-      {/* Logo e Contenuto */}
-      <div className="flex flex-col items-center gap-4 md:gap-6 w-full flex-1 relative z-10 overflow-y-auto no-scrollbar">
-        <div className="w-14 h-14 md:w-16 md:h-16 relative opacity-90 flex justify-center items-center shrink-0">
-          <Image
-            src={logo}
-            alt="Logo"
-            width={64}
-            height={64}
-            className="w-full h-auto object-contain"
-          />
-        </div>
-        {children}
-      </div>
-    </div>
-  );
-
   const renderPreviewPage = () => (
     <FormContainer>
       <div className="flex-1 flex flex-col justify-center items-center gap-4 py-6 relative z-10">
@@ -119,153 +321,17 @@ export default function RSVPForm() {
     </FormContainer>
   );
 
-  const renderStepContent = () => {
-    switch (currentStep) {
-      case 1:
-        return (
-          <div className="w-full flex flex-col items-center justify-center gap-4 font-['DM_Sans'] py-2 flex-1">
-            <div className="text-center space-y-1">
-              <label className="block text-xl md:text-2xl font-medium">
-                Nome e cognome
-              </label>
-              <span className="block text-stone-300 text-xs font-light">
-                *Non accettiamo soprannomi :)
-              </span>
-            </div>
-            <input
-              type="text"
-              placeholder="Mario Rossi"
-              value={formData.nomeAndCognome}
-              onChange={(e) =>
-                setFormData({ ...formData, nomeAndCognome: e.target.value })
-              }
-              className="w-full max-w-md h-12 px-5 bg-white/10 rounded-full border border-stone-300/50 text-stone-50 text-base md:text-lg font-light backdrop-blur-xl focus:outline-none focus:ring-2 focus:ring-stone-50 transition-all text-center"
-            />
-          </div>
-        );
-      case 2:
-      case 3: {
-        const isStep2 = currentStep === 2;
-        const currentSelection = isStep2
-          ? formData.dietaryPreference
-          : formData.allergies;
-        const setSelection = (val: string) =>
-          setFormData(
-            isStep2
-              ? { ...formData, dietaryPreference: val }
-              : { ...formData, allergies: val },
-          );
-
-        return (
-          <div className="w-full flex flex-col items-center justify-center gap-4 font-['DM_Sans'] py-2 flex-1">
-            <div className="text-center space-y-1">
-              <h4 className="text-xl md:text-2xl font-medium">
-                {isStep2 ? "Abitudine alimentare" : "Allergie o Intolleranze"}
-              </h4>
-              <span className="block text-stone-300 text-xs font-light">
-                *Seleziona una delle opzioni
-              </span>
-            </div>
-            <div className="w-full max-w-md grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {["Onnivoro", "Vegetariano", "Vegano", "Nessuna / Altro"].map(
-                (option) => {
-                  const isSelected = currentSelection === option;
-                  return (
-                    <button
-                      key={option}
-                      onClick={() => setSelection(option)}
-                      className={`h-11 px-4 rounded-full border flex items-center justify-center gap-3 transition-all ${
-                        isSelected
-                          ? "bg-stone-50 border-stone-50 text-stone-900 font-medium"
-                          : "bg-white/5 border-stone-50/30 text-stone-50 hover:bg-white/10"
-                      }`}
-                    >
-                      <div
-                        className={`w-2.5 h-2.5 rounded-full border ${isSelected ? "bg-stone-900 border-stone-900" : "border-stone-50/50"}`}
-                      />
-                      <span className="text-sm md:text-base font-light">
-                        {option}
-                      </span>
-                    </button>
-                  );
-                },
-              )}
-            </div>
-          </div>
-        );
-      }
-      case 4:
-        return (
-          <div className="w-full flex flex-col items-center justify-center gap-4 font-['DM_Sans'] py-2 flex-1">
-            <div className="text-center space-y-1">
-              <h4 className="text-xl md:text-2xl font-medium">
-                Note particolari
-              </h4>
-              <span className="block text-stone-300 text-xs font-light">
-                *Solo se necessario, non sentirti obbligato!
-              </span>
-            </div>
-            <textarea
-              placeholder="Aggiungi note particolari..."
-              value={formData.notes}
-              onChange={(e) =>
-                setFormData({ ...formData, notes: e.target.value })
-              }
-              className="w-full max-w-md h-28 p-4 bg-white/5 border border-stone-50/30 rounded-2xl text-stone-50 text-sm md:text-base font-light backdrop-blur-xl focus:outline-none focus:ring-2 focus:ring-stone-50 resize-none transition-all"
-            />
-          </div>
-        );
-      case 5:
-        return (
-          <div className="w-full flex flex-col items-center justify-center gap-4 font-['DM_Sans'] py-2 flex-1">
-            <div className="text-center space-y-1 max-w-md">
-              <h4 className="text-xl md:text-2xl font-medium">
-                Ti vuoi fermare a dormire?
-              </h4>
-              <p className="text-stone-300 text-xs font-light leading-relaxed">
-                *Posti letto in casa da campo, spazio per tende/camper.
-              </p>
-            </div>
-            <div className="w-full max-w-md flex flex-col sm:flex-row gap-3">
-              {["Si mi fermo", "Torno a casa"].map((option) => {
-                const isSelected = formData.sleepingPreference === option;
-                return (
-                  <button
-                    key={option}
-                    onClick={() =>
-                      setFormData({ ...formData, sleepingPreference: option })
-                    }
-                    className={`flex-1 h-11 px-4 rounded-full border flex items-center justify-center gap-3 transition-all ${
-                      isSelected
-                        ? "bg-stone-50 border-stone-50 text-stone-900 font-medium"
-                        : "bg-white/5 border-stone-50/30 text-stone-50 hover:bg-white/10"
-                    }`}
-                  >
-                    <div
-                      className={`w-2.5 h-2.5 rounded-full border ${isSelected ? "bg-stone-900 border-stone-900" : "border-stone-50/50"}`}
-                    />
-                    <span className="text-sm md:text-base font-light">
-                      {option}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
-
   const renderFormPage = () => (
     <FormContainer>
       <div className="w-full flex-1 flex flex-col justify-center my-2 relative z-10">
-        {renderStepContent()}
+        <StepContent
+          currentStep={currentStep}
+          formData={formData}
+          setFormData={setFormData}
+        />
       </div>
 
-      {/* Barra di navigazione ancorata sotto */}
-      <div className="w-full flex items-center justify-between pt-4  mt-auto relative z-10 shrink-0">
+      <div className="w-full flex items-center justify-between pt-4 mt-auto relative z-10 shrink-0">
         <button
           onClick={handlePrev}
           disabled={isSending}
