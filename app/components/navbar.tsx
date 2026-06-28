@@ -154,7 +154,7 @@ export default function Navbar() {
                 onClick={() => scrollToSection("location")}
                 className="justify-start text-stone-50 text-2xl font-normal font-['DM_Sans'] hover:opacity-70 transition-opacity"
               >
-                Benvenuto
+                Ciao
               </button>
               <button
                 onClick={() => scrollToSection("rsvp-section")}

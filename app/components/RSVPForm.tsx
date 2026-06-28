@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Bgform from "@/app/img/Bgform.png";
+import Bgform from "@/app/img/BgForm.jpeg";
 import logo from "../img/logo.svg";
 import arrowIcon from "@/app/img/arrow.svg";
 

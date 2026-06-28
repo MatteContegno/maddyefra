@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link"; // <-- Importato il componente nativo di Next.js
-import listaNozzeImage from "../img/rsvp.jpg";
+import listaNozzeImage from "../img/ListaNozze.jpg";
 import indirizzoIcon from "../img/Indirizzo.svg";
 import phoneIcon from "../img/Phone.svg";
 import mailIcon from "../img/mail.svg";

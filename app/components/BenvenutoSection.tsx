@@ -1,7 +1,7 @@
 "use client"; // Ricordati di includerlo se usi window.open al click
 
 import Image from "next/image";
-import locationImage from "@/app/img/Location.svg";
+import locationImage from "@/app/img/Location.jpg";
 
 export default function BenvenutoSection() {
   const openMaps = (url: string) => {
@@ -20,7 +20,7 @@ export default function BenvenutoSection() {
         <div className="w-full md:flex-1 min-h-75 md:min-h-125 relative rounded-2xl overflow-hidden">
           <Image
             src={locationImage}
-            alt="Benvenuto"
+            alt="Ciao"
             fill
             className="object-cover"
             priority // Carica l'immagine più velocemente essendo a inizio pagina
@@ -34,14 +34,14 @@ export default function BenvenutoSection() {
             className="text-7xl sm:text-8xl md:text-[120px] lg:text-[160px] leading-none text-stone-700"
             style={{ fontFamily: "var(--font-hello-santuy)" }}
           >
-            Benvenuto
+            Ciao
           </h1>
 
           {/* INTRODUZIONE */}
           <div className="text-stone-700 text-xl md:text-2xl font-['DM_Sans'] space-y-4">
             <p className="font-bold">
-              Ciao! Se sei qui è perché saremmo felici di condividere con te
-              questa giornata speciale (e tutte quelle che seguiranno).
+              Se sei qui è perché saremmo felici di condividere con te questa
+              giornata speciale (e tutte quelle che seguiranno).
             </p>
             <p className="font-normal">
               Qui sotto potete trovare la risposta a tutti i vostri dubbi (e

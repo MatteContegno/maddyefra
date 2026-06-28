@@ -1,5 +1,5 @@
 import Image from "next/image";
-import homeImage from "@/app/img/home.svg";
+import homeImage from "@/app/img/Home.jpeg";
 import titleSvg from "@/app/img/Title.svg";
 
 export default function HomeSection() {
