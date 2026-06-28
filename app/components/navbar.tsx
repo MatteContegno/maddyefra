@@ -116,7 +116,7 @@ export default function Navbar() {
               onClick={() => scrollToSection("location")}
               className={`text-base font-normal font-['DM_Sans'] transition-all duration-300 flex items-center justify-center whitespace-nowrap ${currentMobileStyle.btnLocation}`}
             >
-              Benvenuto
+              Ciao
             </button>
 
             <button
