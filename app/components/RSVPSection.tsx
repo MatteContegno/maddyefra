@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import bgCateringImage from "@/app/img/Bgcatering.svg";
+import bgCateringImage from "@/app/img/BgCatering.jpg";
+import bgCateringImageMobile from "@/app/img/BgCateringMobile.jpg";
 import RSVPForm from "./RSVPForm";
 
 export default function RSVPSection() {
@@ -28,13 +29,20 @@ export default function RSVPSection() {
         src={bgCateringImage}
         alt="Catering Background"
         fill
-        className="object-cover object-center select-none opacity-10 md:opacity-40"
+        className="object-cover object-center select-none hidden md:block opacity-10 md:opacity-40"
+        priority
+      />
+      <Image
+        src={bgCateringImageMobile}
+        alt="Catering Background"
+        fill
+        className="object-cover object-center select-none md:hidden"
         priority
       />
       {/* Overlay per migliorare il contrasto */}
       {/* Mobile: overlay verde scuro forte per avvicinarsi al colore pieno del Figma (#45492D) */}
       {/* Desktop: overlay originale invariato */}
-      <div className="absolute inset-0 bg-[#45492D]/90 md:bg-black/10 pointer-events-none" />
+      <div className="absolute inset-0 md:bg-black/10 pointer-events-none" />
 
       {/* 2. CONTENITORE CONTENUTI */}
       <div className="relative z-10 w-full max-w-11/12 flex flex-col justify-start items-start gap-12 md:gap-10 flex-1">

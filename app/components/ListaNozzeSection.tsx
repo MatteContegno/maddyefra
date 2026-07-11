@@ -13,7 +13,7 @@ export default function ListaNozzeSection() {
   return (
     <section
       id="lista-nozze"
-      className="relative w-full min-h-screen flex items-center justify-center bg-stone-900 pt-2 pb-80 md:py-20 px-6 md:px-12 overflow-hidden"
+      className="relative w-full min-h-screen flex items-center justify-center bg-stone-900 pt-16 pb-80 md:py-20 px-6 md:px-12 overflow-hidden"
     >
       {/* ========================================== */}
       {/* STRUTTURA DEGLI SFONDI */}
@@ -44,11 +44,11 @@ export default function ListaNozzeSection() {
       {/* ========================================== */}
 
       {/* CONTENITORE CENTRALE */}
-      <div className="relative z-30 w-full max-w-3xl mx-auto flex flex-col items-center gap-33 md:gap-10 lg:gap-12 text-stone-50 drop-shadow-md">
+      <div className="relative z-30 w-full max-w-3xl mx-auto flex flex-col  items-center gap-32 md:gap-10 lg:gap-12 text-stone-50 drop-shadow-md">
         {/* TITOLI */}
         <div className="text-center space-y-2">
           <h2
-            className="text-[64px] sm:text-8xl md:text-[120px] lg:text-[140px] leading-none font-normal"
+            className="text-7xl sm:text-8xl md:text-[120px] lg:text-[140px] leading-none font-normal"
             style={{ fontFamily: "var(--font-hello-santuy)" }}
           >
             Lista nozze

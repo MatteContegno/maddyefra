@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Bgform from "@/app/img/BgForm.jpeg";
+import BgformMobile from "@/app/img/BgformMobile.jpg";
 import logo from "../img/logo.svg";
 import arrowIcon from "@/app/img/arrow.svg";
 
@@ -42,7 +43,14 @@ const FormContainer = ({
       src={Bgform}
       alt="Form Background"
       fill
-      className="object-cover object-center -z-20 select-none"
+      className="object-cover object-center -z-20 select-none hidden md:block"
+      priority
+    />
+    <Image
+      src={BgformMobile}
+      alt="Form Background"
+      fill
+      className="object-cover object-center -z-20 select-none md:hidden"
       priority
     />
 
@@ -407,7 +415,7 @@ export default function RSVPForm({ onClose }: RSVPFormProps) {
               disabled={isSending}
               className="px-5 h-12 md:h-10 bg-stone-50 rounded-full text-stone-700 font-medium text-base md:text-sm hover:bg-stone-100 disabled:opacity-50 transition-colors cursor-pointer shadow-md flex items-center justify-center gap-2"
             >
-              {isSending ? "Invio..." : "Invia modulo"}
+              {isSending ? "Invio..." : "Invia"}
             </button>
           ) : (
             <button

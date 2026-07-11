@@ -16,7 +16,7 @@ export default function BenvenutoSection() {
       {/* Su mobile: flex-col con order. Su desktop: flex-row a due colonne */}
       <div className="w-full max-w-11/12 flex flex-col md:flex-row justify-between items-stretch gap-12 lg:gap-20">
         {/* IMMAGINE — mobile: order-2, desktop: colonna sinistra */}
-        <div className="order-2 md:order-none w-full md:flex-1 min-h-[329px] md:min-h-125 relative rounded-2xl overflow-hidden">
+        <div className="order-2 md:order-0 w-full md:flex-1 min-h-82.25 md:min-h-125 relative rounded-2xl overflow-hidden">
           <Image
             src={locationImage}
             alt="Location del matrimonio"
@@ -27,7 +27,7 @@ export default function BenvenutoSection() {
         </div>
 
         {/* COLONNA DESTRA (desktop) / BLOCCO TITOLO+TESTO (mobile: order-1) */}
-        <div className="order-1 md:order-none w-full md:flex-1 flex flex-col justify-between items-center md:items-start gap-8">
+        <div className="order-1 md:order-0 w-full md:flex-1 flex flex-col justify-between items-center md:items-start gap-8">
           {/* TITOLO */}
           <h1
             className="text-[64px] md:text-[120px] lg:text-[160px] leading-none text-stone-700 text-center md:text-left w-full"
@@ -66,7 +66,9 @@ export default function BenvenutoSection() {
                   </span>
                 </p>
                 <button
-                  onClick={() => openMaps("URL_MAPS_0")}
+                  onClick={() =>
+                    openMaps("https://maps.app.goo.gl/rCi6jYMbEjCYH5aT7")
+                  }
                   className="px-6 py-2 rounded-full border border-stone-700 text-stone-700 font-medium text-lg hover:bg-stone-700 hover:text-white transition-all cursor-pointer"
                 >
                   Apri in Maps
@@ -85,7 +87,9 @@ export default function BenvenutoSection() {
                   </span>
                 </p>
                 <button
-                  onClick={() => openMaps("URL_MAPS_1")}
+                  onClick={() =>
+                    openMaps("https://maps.app.goo.gl/BJRjCCuqADTP185X8")
+                  }
                   className="px-6 py-2 rounded-full border border-stone-700 text-stone-700 font-medium text-lg hover:bg-stone-700 hover:text-white transition-all cursor-pointer"
                 >
                   Apri in Maps
@@ -106,7 +110,9 @@ export default function BenvenutoSection() {
               </span>
             </p>
             <button
-              onClick={() => openMaps("URL_MAPS_0")}
+              onClick={() =>
+                openMaps("https://maps.app.goo.gl/rCi6jYMbEjCYH5aT7")
+              }
               className="px-6 py-2 rounded-full border border-stone-700 text-stone-700 font-medium text-base hover:bg-stone-700 hover:text-white transition-all cursor-pointer"
             >
               Apri in Maps
@@ -122,7 +128,9 @@ export default function BenvenutoSection() {
               </span>
             </p>
             <button
-              onClick={() => openMaps("URL_MAPS_1")}
+              onClick={() =>
+                openMaps("https://maps.app.goo.gl/BJRjCCuqADTP185X8")
+              }
               className="px-6 py-2 rounded-full border border-stone-700 text-stone-700 font-medium text-base hover:bg-stone-700 hover:text-white transition-all cursor-pointer"
             >
               Apri in Maps
