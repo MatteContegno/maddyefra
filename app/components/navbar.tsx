@@ -55,34 +55,39 @@ export default function Navbar() {
 
   const getMobileNavbarStyles = () => {
     switch (activeSection) {
-      // Quando siamo nella hero, lo sfondo della barra è identico a quando siamo su location,
-      // ma nessuno dei tre pulsanti di testo riceve la classe attiva (rimangono tutti non selezionati)
+      // In hero, il logo diventa il bottone "attivo" (stessa pillola di Ciao/Location),
+      // mentre Ciao, Rsvp e Lista nozze restano neutri
       case "hero":
         return {
           container: "bg-[#45492d]/30 text-[#45492D]",
-          btnLocation:
-            "text-[#45492D] px-4 h-12 flex items-center justify-center",
+          btnLogo: "h-12 px-4 bg-[#45492D] text-[#FFFEF4] rounded-2xl",
+          btnCiao: "text-[#45492D] px-4 h-12 flex items-center justify-center",
           btnRsvp: "text-[#45492D]",
           btnListaNozze: "text-[#45492D]",
         };
       case "location":
         return {
           container: "bg-[#45492d]/30 text-[#45492D]",
-          btnLocation: "h-12 px-4 bg-[#45492D] text-[#FFFEF4] rounded-2xl",
+          btnLogo: "text-[#45492D] px-2 h-12 flex items-center justify-center",
+          btnCiao: "h-12 px-4 bg-[#45492D] text-[#FFFEF4] rounded-2xl",
           btnRsvp: "text-[#45492D]",
           btnListaNozze: "text-[#45492D]",
         };
       case "rsvp-section":
         return {
           container: "bg-[#FFFEF4]/30 text-white/50",
-          btnLocation: "text-[#FFFEF4]/50",
+          btnLogo:
+            "text-[#FFFEF4]/50 px-2 h-12 flex items-center justify-center",
+          btnCiao: "text-[#FFFEF4]/50",
           btnRsvp: "h-12 px-4 bg-[#FFFEF4] text-[#45492D] rounded-2xl",
           btnListaNozze: "text-[#FFFEF4]/50",
         };
       case "lista-nozze":
         return {
           container: "bg-black/40 text-white/50",
-          btnLocation: "text-[#FFFEF4]/50",
+          btnLogo:
+            "text-[#FFFEF4]/50 px-2 h-12 flex items-center justify-center",
+          btnCiao: "text-[#FFFEF4]/50",
           btnRsvp: "text-[#FFFEF4]/50",
           btnListaNozze: "h-12 px-4 bg-[#45492D] text-[#FFFEF4] rounded-2xl",
         };
@@ -101,12 +106,12 @@ export default function Navbar() {
       >
         <div className="w-full flex items-center justify-between px-2">
           <div className="flex items-center gap-2 w-full justify-around">
-            {/* LOGO */}
+            {/* LOGO come bottone, ora reattivo allo stato attivo */}
             <button
               onClick={() => scrollToSection("home")}
-              className="h-12 px-2 flex items-center justify-center cursor-pointer"
+              className={`flex items-center justify-center cursor-pointer transition-all duration-300 ${currentMobileStyle.btnLogo}`}
             >
-              <div className="w-[35px] h-[22px] relative">
+              <div className="w-8.75 h-5.5 relative">
                 <Image src={logo} alt="Logo" fill className="object-contain" />
               </div>
             </button>
@@ -114,7 +119,7 @@ export default function Navbar() {
             {/* VOCI DI NAVIGAZIONE */}
             <button
               onClick={() => scrollToSection("location")}
-              className={`text-base font-normal font-['DM_Sans'] transition-all duration-300 flex items-center justify-center whitespace-nowrap ${currentMobileStyle.btnLocation}`}
+              className={`text-base font-normal font-['DM_Sans'] transition-all duration-300 flex items-center justify-center whitespace-nowrap ${currentMobileStyle.btnCiao}`}
             >
               Ciao
             </button>

@@ -83,7 +83,7 @@ const FormContainer = ({
     )}
 
     <div className="flex flex-col items-center gap-4 md:gap-6 w-full flex-1 relative z-10 overflow-y-auto no-scrollbar">
-      <div className="w-[85px] h-[52px] md:w-16 md:h-16 relative opacity-90 flex justify-center items-center shrink-0">
+      <div className="w-21.25 h-13 md:w-16 md:h-16 relative opacity-90 flex justify-center items-center shrink-0">
         <Image
           src={logo}
           alt="Logo"
@@ -150,7 +150,7 @@ const StepContent = ({
                     onClick={() =>
                       setFormData({ ...formData, dietaryPreference: option })
                     }
-                    className={`w-full md:w-auto md:flex-1 md:sm:flex-initial h-11 px-5 rounded-full border flex items-center justify-center gap-2.5 transition-all whitespace-nowrap md:min-w-[140px] ${
+                    className={`w-full md:w-auto md:flex-1 md:sm:flex-initial h-11 px-5 rounded-full border flex items-center justify-center gap-2.5 transition-all whitespace-nowrap md:min-w-35 ${
                       isSelected
                         ? "bg-stone-50 border-stone-50 text-stone-900 font-medium"
                         : "bg-white/5 border-stone-50/30 text-stone-50 hover:bg-white/10"
@@ -233,7 +233,7 @@ const StepContent = ({
             onChange={(e) =>
               setFormData({ ...formData, notes: e.target.value })
             }
-            className="w-full max-w-md flex-1 md:h-28 pt-4 pb-[60px] px-4 md:p-4 bg-white/5 border border-[#FFFEF4] md:border-stone-50/30 rounded-[20px] md:rounded-2xl text-stone-50 text-base font-light backdrop-blur-[25px] md:backdrop-blur-xl focus:outline-none focus:ring-2 focus:ring-stone-50 resize-none transition-all"
+            className="w-full max-w-md flex-1 md:h-28 pt-4 pb-15 px-4 md:p-4 bg-white/5 border border-[#FFFEF4] md:border-stone-50/30 rounded-[20px] md:rounded-2xl text-stone-50 text-base font-light backdrop-blur-[25px] md:backdrop-blur-xl focus:outline-none focus:ring-2 focus:ring-stone-50 resize-none transition-all"
           />
         </div>
       );

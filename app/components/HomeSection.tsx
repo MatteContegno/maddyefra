@@ -57,7 +57,7 @@ export default function HomeSection() {
             <span className="hidden md:inline text-2xl md:text-4xl font-light text-stone-300 select-none">
               ·
             </span>
-            <span className="font-bold text-2xl md:text-3xl md:text-5xl">
+            <span className="font-bold text-2xl md:text-5xl">
               26 settembre 2026
             </span>
             <span className="hidden md:inline text-2xl md:text-4xl font-light text-stone-300 select-none">

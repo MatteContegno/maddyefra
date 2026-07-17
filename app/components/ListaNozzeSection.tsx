@@ -13,7 +13,7 @@ export default function ListaNozzeSection() {
   return (
     <section
       id="lista-nozze"
-      className="relative w-full min-h-screen flex items-center justify-center bg-stone-900 pt-16 pb-80 md:py-20 px-6 md:px-12 overflow-hidden"
+      className="relative w-full min-h-screen flex items-center justify-center bg-stone-900 pt-4 pb-20 md:py-20 px-6 md:px-12 overflow-hidden"
     >
       {/* ========================================== */}
       {/* STRUTTURA DEGLI SFONDI */}
@@ -44,7 +44,7 @@ export default function ListaNozzeSection() {
       {/* ========================================== */}
 
       {/* CONTENITORE CENTRALE */}
-      <div className="relative z-30 w-full max-w-3xl mx-auto flex flex-col  items-center gap-32 md:gap-10 lg:gap-12 text-stone-50 drop-shadow-md">
+      <div className="relative z-30 w-full max-w-3xl mx-auto flex flex-col  items-center gap-6 md:gap-10 lg:gap-12 text-stone-50 drop-shadow-md">
         {/* TITOLI */}
         <div className="text-center space-y-2">
           <h2
@@ -57,6 +57,20 @@ export default function ListaNozzeSection() {
             Sastesitour
           </h3>
         </div>
+
+        {/* TESTO INTRODUTTIVO */}
+        <p className="font-['DM_Sans'] italic font-light text-base md:text-xl leading-relaxed text-stone-200 text-center max-w-xl mx-auto">
+          Abbiamo intenzione di passare le prime settimane da marito e moglie a
+          passeggiare per la Terra di Mezzo!
+          <br className="hidden md:block" /> Se vuoi farci un regalo, qui sotto
+          trovi le coordinate per il sito di Sastesi Tour, dove troverete giorno
+          per giorno tutto il nostro itinerario in Nuova Zelanda! È possibile
+          partecipare alla lista sia di persona che online.
+          <br className="hidden md:block" /> Ma a noi in realtà bastano
+          l&rsquo;affetto, gli abbracci e la vostra amicizia di sempre!
+          <br className="hidden md:block" /> Grazie di esserci, stelline belle
+          💛
+        </p>
 
         {/* CONTENITORE INFO */}
         <div className="w-full flex flex-col items-center gap-6 md:gap-8 font-['DM_Sans'] text-base md:text-2xl font-light">

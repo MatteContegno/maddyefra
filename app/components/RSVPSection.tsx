@@ -45,7 +45,7 @@ export default function RSVPSection() {
       <div className="absolute inset-0 md:bg-black/10 pointer-events-none" />
 
       {/* 2. CONTENITORE CONTENUTI */}
-      <div className="relative z-10 w-full max-w-11/12 flex flex-col justify-start items-start gap-12 md:gap-10 flex-1">
+      <div className="relative z-10 w-full max-w-11/12 flex flex-col justify-start items-start md:gap-10 flex-1">
         {/* BLOCCO TESTI */}
         <div className="w-full flex flex-col justify-start items-start">
           <h2
@@ -55,9 +55,11 @@ export default function RSVPSection() {
             Rsvp
           </h2>
 
-          <div className="w-full font-['DM_Sans'] tracking-wide leading-tight space-y-2 mt-6 md:mt-6">
+          <div className="w-full font-['DM_Sans'] tracking-wide leading-tight space-y-6 mt-6 md:mt-6">
             <p className="text-stone-100 text-lg sm:text-xl md:text-2xl font-bold">
-              Mettetevi comodi, ma prima raggiungeteci!
+              Hai particolari esigenze alimentari? Vuoi fermarti a dormire a
+              pratolungo? Compila il questionario per aiutarci a curare ogni
+              dettaglio!
             </p>
             <p className="text-stone-100/85 text-base sm:text-lg font-light italic">
               (Per favore, ricordati di indossare un dettaglio verde o
