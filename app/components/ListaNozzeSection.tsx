@@ -13,7 +13,7 @@ export default function ListaNozzeSection() {
   return (
     <section
       id="lista-nozze"
-      className="relative w-full min-h-screen flex items-center justify-center bg-stone-900 pt-4 pb-20 md:py-20 px-6 md:px-12 overflow-hidden"
+      className="relative w-full min-h-screen flex items-center justify-center bg-stone-900 pt-4 pb-16 md:py-16 px-6 md:px-12 overflow-hidden"
     >
       {/* ========================================== */}
       {/* STRUTTURA DEGLI SFONDI */}
@@ -58,22 +58,20 @@ export default function ListaNozzeSection() {
           </h3>
         </div>
 
-        {/* TESTO INTRODUTTIVO */}
-        <p className="font-['DM_Sans'] italic font-light text-base md:text-xl leading-relaxed text-stone-200 text-center max-w-xl mx-auto">
-          Abbiamo intenzione di passare le prime settimane da marito e moglie a
-          passeggiare per la Terra di Mezzo!
-          <br className="hidden md:block" /> Se vuoi farci un regalo, qui sotto
-          trovi le coordinate per il sito di Sastesi Tour, dove troverete giorno
-          per giorno tutto il nostro itinerario in Nuova Zelanda! È possibile
-          partecipare alla lista sia di persona che online.
-          <br className="hidden md:block" /> Ma a noi in realtà bastano
-          l&rsquo;affetto, gli abbracci e la vostra amicizia di sempre!
-          <br className="hidden md:block" /> Grazie di esserci, stelline belle
-          💛
-        </p>
-
         {/* CONTENITORE INFO */}
-        <div className="w-full flex flex-col items-center gap-6 md:gap-8 font-['DM_Sans'] text-base md:text-2xl font-light">
+        <div className="w-full flex flex-col items-center gap-4 font-['DM_Sans'] text-base md:text-2xl font-light">
+          {/* TESTO INTRODUTTIVO */}
+          <p className="font-['DM_Sans'] italic font-light text-base md:text-xl leading-relaxed text-stone-200 text-center max-w-3xl mx-auto">
+            Abbiamo intenzione di passare le prime settimane da marito e moglie
+            a passeggiare per la Terra di Mezzo! Se vuoi farci un regalo, qui
+            sotto trovi le coordinate per il sito di Sastesi Tour, dove
+            troverete giorno per giorno tutto il nostro itinerario in Nuova
+            Zelanda! È possibile partecipare alla lista sia di persona che
+            online.
+            <br /> Ma a noi in realtà bastano l&rsquo;affetto, gli abbracci e la
+            vostra amicizia di sempre!
+            <br /> Grazie di esserci, stelline belle 💛
+          </p>
           {/* BLOCCO 1: INDIRIZZO */}
           <div className="flex flex-row items-center justify-center gap-4 max-w-xl mx-auto text-center">
             <div className="w-4.5 h-6 md:w-5 md:h-5 relative shrink-0">
@@ -95,7 +93,7 @@ export default function ListaNozzeSection() {
           <hr className="hidden md:block w-24 border-stone-50/20" />
 
           {/* BLOCCO 2+3: TELEFONO + EMAIL raggruppati su mobile */}
-          <div className="flex flex-col items-center gap-1 md:contents">
+          <div className="flex flex-col items-center md:contents">
             {/* TELEFONO */}
             <Link
               href="tel:0105303608"

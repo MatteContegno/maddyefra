@@ -45,9 +45,9 @@ export default function RSVPSection() {
       <div className="absolute inset-0 md:bg-black/10 pointer-events-none" />
 
       {/* 2. CONTENITORE CONTENUTI */}
-      <div className="relative z-10 w-full max-w-11/12 flex flex-col justify-start items-start md:gap-10 flex-1">
+      <div className="relative z-10 w-full max-w-11/12 flex flex-col md:gap-10 flex-1">
         {/* BLOCCO TESTI */}
-        <div className="w-full flex flex-col justify-start items-start">
+        <div className="w-full flex flex-col items-center md:items-start">
           <h2
             className="text-7xl sm:text-8xl md:text-[120px] lg:text-[160px] text-stone-50 leading-none select-none"
             style={{ fontFamily: "var(--font-hello-santuy)" }}
@@ -55,7 +55,7 @@ export default function RSVPSection() {
             Rsvp
           </h2>
 
-          <div className="w-full font-['DM_Sans'] tracking-wide leading-tight space-y-6 mt-6 md:mt-6">
+          <div className="w-full font-['DM_Sans'] tracking-wide leading-tight text-center md:text-left space-y-6 mt-6 md:mt-6">
             <p className="text-stone-100 text-lg sm:text-xl md:text-2xl font-bold">
               Hai particolari esigenze alimentari? Vuoi fermarti a dormire a
               pratolungo? Compila il questionario per aiutarci a curare ogni

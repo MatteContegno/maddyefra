@@ -249,7 +249,7 @@ const StepContent = ({
             </p>
           </div>
           <div className="w-full max-w-md flex flex-col md:flex-row justify-center gap-2 md:gap-3">
-            {["Si mi fermo", "Torno a casa"].map((option) => {
+            {["Sì, mi fermo", "Torno a casa"].map((option) => {
               const isSelected = formData.sleepingPreference === option;
               return (
                 <button
