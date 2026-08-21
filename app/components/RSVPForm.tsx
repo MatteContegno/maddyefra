@@ -156,9 +156,6 @@ const StepContent = ({
                         : "bg-white/5 border-stone-50/30 text-stone-50 hover:bg-white/10"
                     }`}
                   >
-                    <div
-                      className={`w-2.5 h-2.5 rounded-full border shrink-0 ${isSelected ? "bg-stone-900 border-stone-900" : "border-stone-50/50"}`}
-                    />
                     <span className="text-sm md:text-base font-light">
                       {option}
                     </span>
@@ -203,9 +200,6 @@ const StepContent = ({
                       : "bg-white/5 border-stone-50/30 text-stone-50 hover:bg-white/10"
                   }`}
                 >
-                  <div
-                    className={`w-2.5 h-2.5 rounded-full border shrink-0 ${isSelected ? "bg-stone-900 border-stone-900" : "border-stone-50/50"}`}
-                  />
                   <span className="text-sm md:text-base font-light">
                     {option}
                   </span>
@@ -264,9 +258,6 @@ const StepContent = ({
                       : "bg-white/5 border-[#FFFEF4] md:border-stone-50/30 text-stone-50 hover:bg-white/10"
                   }`}
                 >
-                  <div
-                    className={`w-2.5 h-2.5 rounded-full border shrink-0 ${isSelected ? "bg-stone-900 border-stone-900" : "border-stone-50/50"}`}
-                  />
                   <span className="text-base font-light">{option}</span>
                 </button>
               );
